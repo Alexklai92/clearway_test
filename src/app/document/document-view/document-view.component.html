@@ -1,0 +1,39 @@
+@let docObj = _doc$ | async;
+<!--  -->
+@if (docObj) {
+<app-toolbar>
+  <div leading>{{ docObj.name }}</div>
+
+  <div class="toolbar-controls flex-center-between-row" end>
+    <button (click)="zoom.zoomOut()">-</button>
+    <span>{{ zoom.cuurentValuePct() }}%</span>
+    <button (click)="zoom.zoomIn()">+</button>
+    <button (click)="onSaveBtnClick()">Сохранить документ</button>
+  </div>
+</app-toolbar>
+
+<div scrollable (contextmenu)="onContextmenu($event)">
+  <app-zoom-block class="document-viewer__container" #zoom="zoomBlock">
+    @for (docPage of docObj.pages; track docPage.number) {
+    <app-document-page [docPage]="docPage"></app-document-page>
+    }
+    <!--  -->
+    @if (docObj.annotations) {
+    <!--  -->
+      @for (annotation of docObj.annotations; track annotation.id) {
+        <app-document-annotation
+          [initialPosX]="annotation.left"
+          [initialPosY]="annotation.top"
+          [annotation]="annotation"
+        ></app-document-annotation>
+      }
+    <!--  -->
+    }
+  </app-zoom-block>
+</div>
+
+} @else if (_isDocNotFound()) {
+<app-not-found></app-not-found>
+} @else {
+<!-- spinner/skeleton -->
+}

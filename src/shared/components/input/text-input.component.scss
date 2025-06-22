@@ -1,0 +1,18 @@
+@use 'constants' as const;
+
+:host {
+  textarea {
+    border: 2px solid const.$color-bg-primary;
+    outline: none;
+    border-radius: const.$borderradius-large;
+    background-color: const.$color-bg-primary;
+    color: const.$color-text;
+    resize: none;
+    min-width: 200px;
+    min-height: 100px;
+
+    &:focus {
+      border: 2px solid const.$color-primary;
+    }
+  }
+}

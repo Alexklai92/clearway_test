@@ -1,0 +1,42 @@
+@use "sass:map";
+
+$colorsMap: (
+  "color-primary": red,
+  "color-text": #020202,
+  "color-calm": #746f6f,
+  "color-accent": yellow,
+
+  "color-bg-calm": #878787,
+  "color-bg-primary": white,
+  "color-bg-accent": rgb(102, 102, 231),
+);
+
+$paddingsMap: (
+  "padding-small": 5px,
+  "padding-medium": 10px,
+  "padding-large": 15px,
+);
+
+$fontSizesMap: (
+  "fs-small": 10px,
+  "fs-text": 14px,
+  "fs-medium": 16px,
+  "fs-header": 20px,
+);
+
+$borderRadiusMap: (
+  "br-small": 2px,
+  "br-large": 5px,
+);
+
+$box-shadow: 1px 1px 6px 1px #0000002e;
+
+@function buildVariableValueByMap($map, $key) {
+  @return var(--#{$key}, map.get($map, $key));
+}
+
+@mixin initCSSVariablesByMap($map) {
+  @each $key, $value in $map {
+    --#{$key}: #{$value};
+  }
+}

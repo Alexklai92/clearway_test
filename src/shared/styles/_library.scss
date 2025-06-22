@@ -1,0 +1,51 @@
+@use "./__base" as base;
+
+@mixin initStyles() {
+  .scaled-block {
+    display: block;
+    transition: transform .5s ease;
+    transform: scale(var(--scale-value, 1));
+    transform-origin: var(--scale-transform-origin, 0 0);
+  }
+
+  .scrollable {
+    overflow: auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .header {
+    font-size: base.buildVariableValueByMap(base.$fontSizesMap, "fs-header");
+    margin: 0;
+  }
+
+  button {
+    background-color: none;
+    border: none;
+    outline: none;
+    border-radius: base.buildVariableValueByMap(base.$borderRadiusMap, "br-small");
+    cursor: pointer;
+  }
+
+  .flex-center-between-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+  }
+
+  .overlay-element {
+    box-shadow: base.$box-shadow;
+    padding: base.buildVariableValueByMap(base.$paddingsMap, "padding-medium");
+    border-radius: base.buildVariableValueByMap(base.$borderRadiusMap, "br-large");
+  }
+}
+
+// Хотел сделать привязку к теме браузера, но увы, уже не успею
+@mixin CSSvariables() {
+  @include base.initCSSVariablesByMap(base.$colorsMap);
+  @include base.initCSSVariablesByMap(base.$paddingsMap);
+  @include base.initCSSVariablesByMap(base.$fontSizesMap);
+  @include base.initCSSVariablesByMap(base.$borderRadiusMap);
+}

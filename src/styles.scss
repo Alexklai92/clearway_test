@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@use "library" as lib;
+
+html {
+  @include lib.CSSvariables();
+
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+@include lib.initStyles()

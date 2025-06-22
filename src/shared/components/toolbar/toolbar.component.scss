@@ -1,0 +1,25 @@
+@use "constants" as const;
+
+
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: const.$padding-small;
+  background-color: const.$color-bg-accent;
+
+  .toolbar {
+    &-leading {
+
+    }
+
+    &-center {
+
+    }
+
+    &-end {
+
+    }
+  }
+}

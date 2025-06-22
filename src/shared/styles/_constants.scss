@@ -1,0 +1,27 @@
+@use "./__base" as base;
+
+// Colors - CSSVariables
+$color-primary: base.buildVariableValueByMap(base.$colorsMap, "color-primary");
+$color-text: base.buildVariableValueByMap(base.$colorsMap, "color-text");
+$color-calm: base.buildVariableValueByMap(base.$colorsMap, "color-calm");
+
+$color-bg-calm: base.buildVariableValueByMap(base.$colorsMap, "color-bg-calm");
+$color-bg-accent: base.buildVariableValueByMap(base.$colorsMap, "color-bg-accent");
+$color-bg-primary: base.buildVariableValueByMap(base.$colorsMap, "color-bg-primary");
+
+// Paddings - CSSVariables
+$padding-small: base.buildVariableValueByMap(base.$paddingsMap, "padding-small");
+$padding-medium: base.buildVariableValueByMap(base.$paddingsMap, "padding-medium");
+$padding-large: base.buildVariableValueByMap(base.$paddingsMap, "padding-large");
+
+// FontSizes - CSSVariables
+$fontsize-small: base.buildVariableValueByMap(base.$fontSizesMap, "fs-small");
+$fontsize-text: base.buildVariableValueByMap(base.$fontSizesMap, "fs-text");
+$fontsize-medium: base.buildVariableValueByMap(base.$fontSizesMap, "fs-medium");
+$fontsize-header: base.buildVariableValueByMap(base.$fontSizesMap, "fs-header");
+
+$borderradius-small: base.buildVariableValueByMap(base.$borderRadiusMap, "br-small");;
+$borderradius-large: base.buildVariableValueByMap(base.$borderRadiusMap, "br-large");;
+
+// CONSTANTS Variables
+$box-shadow: base.$box-shadow;

@@ -1,0 +1,11 @@
+@use 'constants' as const;
+
+:host {
+  background-color: const.$color-bg-primary;
+
+  .create-annotation {
+    display: flex;
+    flex-direction: column;
+    gap: const.$padding-small;
+  }
+}

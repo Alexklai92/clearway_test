@@ -1,0 +1,38 @@
+@use "constants" as const;
+
+:host {
+  display: grid;
+  height: 100vh;
+  width: 100%;
+  max-height: 100vh;
+  grid-row: 1fr 1fr;
+  background-color: const.$color-bg-calm;
+
+  .zoom-controls {
+    min-width: 100px;
+  }
+
+  .document-viewer__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  app-zoom-block {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  img {
+    display: inline-flex;
+  }
+}
+
+.create-annotation {
+  background-color: const.$color-bg-primary;
+  display: flex;
+  flex-direction: column;
+
+  button {
+    margin-left: auto;
+  }
+}

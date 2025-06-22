@@ -1,0 +1,40 @@
+@use 'constants' as const;
+
+:host {
+
+  --content-opacity: .6;
+
+  max-width: 500px;
+  max-height: 300px;
+
+  &:hover {
+    --content-opacity: 1;
+  }
+
+  .annotation {
+    box-shadow: const.$box-shadow;
+    border-radius: const.$borderradius-large;
+    padding: const.$padding-medium;
+    background-color: rgba(0, 0, 253, 0.514);
+
+    opacity: var(--content-opacity);
+  }
+
+  button {
+    margin-left: -5px;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    border: 1px solid const.$color-text;
+
+    position: relative;
+    z-index: 1;
+
+    &::before {
+      content: "x";
+      position: absolute;
+      left: 3px;
+      top: -2.5px;
+    }
+  }
+}
