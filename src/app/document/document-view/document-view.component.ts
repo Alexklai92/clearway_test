@@ -5,6 +5,7 @@ import {
   inject,
   Injector,
   signal,
+  viewChild,
 } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -51,6 +52,7 @@ export class DocumentViewComponent {
   private _activatedRoute = inject(ActivatedRoute);
   private _destroyRef = inject(DestroyRef);
   private _overlayService = inject(OverlayService);
+  private _scrollable = viewChild(ScrollableDirective);
 
   private _currentId$ = this._activatedRoute.params.pipe(
     takeUntilDestroyed(this._destroyRef),
@@ -85,6 +87,10 @@ export class DocumentViewComponent {
               provide: DocumentViewService,
               useValue: this._documentViewService,
             },
+            {
+              provide: ScrollableDirective,
+              useValue: this._scrollable(),
+            }
           ],
         }),
         hasBackdrop: false,
