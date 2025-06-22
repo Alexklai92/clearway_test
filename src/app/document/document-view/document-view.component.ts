@@ -24,12 +24,15 @@ import { NotFoundComponent, ToolbarComponent } from '@shared/components';
 import { DocumentViewService } from 'app/document/services/document-view.service';
 import { OverlayService } from '@shared/overlay';
 import {
+  AnnotationChangeEnum,
   DocumentCreateAnnotationComponent,
   DocumentPageComponent,
+  TAnnotatioChangeOutput,
 } from '../components/';
 import { DocumentAnnotationComponent } from '../components/document-annotation/document-annotation.component';
 import { ScrollableDirective } from '@shared/directives/scrollable.directive';
 import { ZoomBlockDirective } from '@shared/directives/zoom-block.directive';
+import { IAnnotation } from '@backend-api/document';
 
 @Component({
   imports: [
@@ -53,6 +56,7 @@ export class DocumentViewComponent {
   private _destroyRef = inject(DestroyRef);
   private _overlayService = inject(OverlayService);
   private _scrollable = viewChild(ScrollableDirective);
+  private _zoom = viewChild(ZoomBlockDirective);
 
   private _currentId$ = this._activatedRoute.params.pipe(
     takeUntilDestroyed(this._destroyRef),
@@ -90,6 +94,10 @@ export class DocumentViewComponent {
             {
               provide: ScrollableDirective,
               useValue: this._scrollable(),
+            },
+            {
+              provide: ZoomBlockDirective,
+              useValue: this._zoom(),
             }
           ],
         }),
@@ -98,5 +106,16 @@ export class DocumentViewComponent {
         y: event.clientY,
       }
     );
+  }
+
+  public onAnnotationChange(event: TAnnotatioChangeOutput, annotation: IAnnotation): void {
+    switch (event.type) {
+      case AnnotationChangeEnum.Remove:
+        this._documentViewService.removeAnnotation(annotation);
+        break;
+      case AnnotationChangeEnum.UpdateCoords:
+        this._documentViewService.patchCoordsAnnotations(annotation.id, event.x, event.y);
+        break;
+    }
   }
 }

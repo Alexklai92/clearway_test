@@ -24,7 +24,8 @@
         <app-document-annotation
           [initialPosX]="annotation.left"
           [initialPosY]="annotation.top"
-          [annotation]="annotation"
+          [text]="annotation.text"
+          (annotationChange)="onAnnotationChange($event, annotation)"
         ></app-document-annotation>
       }
     <!--  -->
