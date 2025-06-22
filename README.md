@@ -1,59 +1,13 @@
-# TestTaskClearway
-
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
-
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+# Плюсы
+- Shared на мой взгляд достаточно прикольный получился (директивы, стили)
+# Минусы
+- Дизайн отстой, не притащил ui-kit, тк посчитал не нужным ради 1 инпута и 4 кнопок в этом задании.
+  Из описания мне было не понятно можно ли использовать cdk отдельно от ui-kit, поэтому пришлось от греха подальше написать свои решения
+- Есть бойлерплейт, которого можно избежать
+- У draggable элементов не подставляется will-change: left top;
+- Нет привязки к хосту у draggable-element, по сути он гоняет внутри того, где определен, если это будет relative - то быть беде. В идеале надо было сделать при драгге копию в оверлей и по ней гонять, чтобы быть точно уверенным что не попадем в оверлей
+- Не стал делать привязку границ draggable-element к страницам, возможно и не надо было. Почему то показалось, что это минус
+- Почти весь public-API в shared/directives покрывает только ту часть, которую использует вьювер
+# Неопределённости
+- Можно было завернуть готовые композиции в отдельные компоненты ( например бади вювера и тулбар вынести в компоненты ), но посчитал, что т.к. непонятно развитие и переиспользованность компонентов, не стал этого делать.
+- Связанность у AnnotationComponent мне не нравится, в идеале я бы вынес в отдельный компонент, где был бы просто итератор драг-елементов и посылал бы Output"ы на вверх что то удалили, то изменили, это было бы чище. Сейчас у компонента аннотации связь с IAnnotation и еще зависимость от сервиса вьюшки. Но из за отсутсвия переиспользования и экономии времени, +- вариант для меня.
